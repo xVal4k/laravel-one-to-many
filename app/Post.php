@@ -17,7 +17,8 @@ class Post extends Model
         'title',
         'content',
         'image',
-        'slug'
+        'slug',
+        'user_id'
     ];
 
     static public function createSlug($arg)
@@ -30,5 +31,9 @@ class Post extends Model
             $_i++;
         }
         return $slug;
+    }
+
+    public function user() {
+        return $this->belongsTo('App\User');
     }
 }

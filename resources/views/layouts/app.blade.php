@@ -73,6 +73,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="text-decoration-none" href="{{ route('admin.posts.index') }}">Post List</a>
+                                <a class="text-decoration-none" href="{{ route('admin.userIndex') }}">My posts</a>
                             </li>
                         @endguest
                     </ul>

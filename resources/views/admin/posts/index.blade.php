@@ -14,19 +14,22 @@
                                 <a class="text-decoration-none"
                                     href="{{ route('admin.posts.show', $post->slug) }}">{{ $post->title }}</a>
                             </h2>
-                            <div class="row row-cols-3 justify-content-center">
-                                <div class="col">
-                                    <a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->slug) }}">Edit</a>
-                                </div>
-                                <div class="col" data-id="{{ $post->slug }}">
+                            @if (Auth::user()->id == $post->user_id)
+                                <div class="row row-cols-3 justify-content-center">
+                                    <div class="col">
+                                        <a class="btn btn-primary"
+                                            href="{{ route('admin.posts.edit', $post->slug) }}">Edit</a>
+                                    </div>
+                                    <div class="col" data-id="{{ $post->slug }}">
 
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-danger del_btn" data-bs-toggle="modal"
-                                        data-bs-target="#modal-delete">
-                                        Delete
-                                    </button>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-danger del_btn" data-bs-toggle="modal"
+                                            data-bs-target="#modal-delete">
+                                            Delete
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Post;
+use App\User;
 
 class PostSeeder extends Seeder
 {
@@ -17,10 +18,11 @@ class PostSeeder extends Seeder
         for ($i = 0; $i <50; $i++) {
             $title = $faker->words(rand(3, 7), true);
             Post::create([
-                'title' => $title,
-                'content' => $faker->words(rand(5, 20), true),
-                'image' => $faker->imageUrl(250, 300),
-                'slug' => Post::createSlug($title)
+                'user_id'   => User::inRandomOrder()->first()->id,
+                'title'     => $title,
+                'content'   => $faker->words(rand(5, 20), true),
+                'image'     => $faker->imageUrl(250, 300),
+                'slug'      => Post::createSlug($title)
             ]);
         }
     }
