@@ -24,6 +24,7 @@
                 background-image: url("https://getwallpapers.com/wallpaper/full/6/b/4/1232134-gorgerous-desktop-wallpaper-for-large-screens-2048x1152.jpg");
                 background-size: cover;
                 background-position: center;
+                background-repeat: no-repeat;
             }
 
             .full-height {

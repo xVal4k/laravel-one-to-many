@@ -1,23 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 card bg-dark text-white">
+                <div class="card-header text-center">
+                    <h2>{{ Auth::user()->name }}</h2>
+                </div>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                    <div class="row row-cols-6 justify-content-around">
+                        <div class="col">
+                            <a class="text-decoration-none" href="{{ route('admin.posts.index') }}">Post List</a>
                         </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                        <div class="col">
+                            <a class="text-decoration-none" href="{{ route('admin.userIndex') }}">My posts</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
-</div>
 @endsection
