@@ -30,6 +30,19 @@
                     @error('image')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+                    <select class="form-select" aria-label="Default select example" name="category_id" id="category">
+                        <option value="">Select a category</option>
+
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}"
+                                {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('category_id')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <div class="mb-3">
                         <label for="slug" class="form-label">Slug</label>
                         <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') }}">
@@ -48,7 +61,8 @@
             </div>
         </div>
         <div class="row text-center">
-            <h3 class="my-4"><a class="text-decoration-none" href="{{ route('admin.posts.index') }}">Comics List</a>
+            <h3 class="my-4"><a class="text-decoration-none" href="{{ route('admin.posts.index') }}">Comics
+                    List</a>
             </h3>
         </div>
     </div>

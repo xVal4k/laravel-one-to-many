@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
 
-    private function confValidation($arg) {
+    private function confValidation($arg)
+    {
         return [
             'title' => 'required|max:100',
             'content' => 'required',
@@ -20,12 +21,14 @@ class PostController extends Controller
                 'required',
                 Rule::unique('posts')->ignore($arg),
                 'max:100'
-            ]
+            ],
+            'category_id'  => 'required|exists:App\Category,id',
         ];
     }
 
 
-    public function userIndex() {
+    public function userIndex()
+    {
         $posts = Post::where('user_id', Auth::user()->id)->paginate(10);
 
         return view('admin.posts.index', compact('posts'));
@@ -50,7 +53,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = \App\Category::all();
+
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -79,7 +84,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view ('admin.posts.show', compact('post'));
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -92,7 +97,12 @@ class PostController extends Controller
     {
         if (Auth::user()->id !== $post->user_id) abort(403);
 
-        return view('admin.posts.edit', compact('post'));
+        $categories = \App\Category::all();
+
+        return view('admin.posts.edit', [
+            'post'          => $post,
+            'categories'    => $categories
+        ]);
     }
 
     /**
