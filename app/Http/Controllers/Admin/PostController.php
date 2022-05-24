@@ -43,7 +43,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::whereNotNull('id');
+        $posts = Post::whereRaw('1 = 1');
 
         $categories = Category::all();
         $users = User::all();
